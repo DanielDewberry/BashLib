@@ -226,6 +226,10 @@ test_numeric_value \
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
     test_summary
+
+    if (( TestCountFail != 0 )); then
+        list_failed_tests
+    fi
 fi
 
 

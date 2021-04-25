@@ -11,6 +11,7 @@
 #   - TestCount
 #   - TestCountPass
 #   - TestCountFail
+#   - TestFails
 #
 # Functions:
 #   - unit_test_result     Invoked by a function such as test_string_length to
@@ -29,6 +30,7 @@
 TestCount=0
 TestCountPass=0
 TestCountFail=0
+declare -a TestFails
 
 
 # Functions
@@ -66,6 +68,7 @@ unit_test_result()
         FAIL | fail)
             test_status='\033[31mFAIL\033[0m'
             ((++TestCountFail))
+            TestFails+=("$test_name")
             ;;
 
         *)
@@ -200,6 +203,17 @@ test_summary()
     echo "Passes  $TestCountPass"
     echo "Fails   $TestCountFail"
     echo "Total   $TestCount  $(( 100 * TestCountPass / TestCount ))% Success"
+}
+
+
+list_failed_tests()
+{
+    if (( TestCountFail != 0 )); then
+        echo 'Failures:'
+        for failure in "${TestFails[@]}"; do
+            echo "- $failure"
+        done
+    fi
 }
 
 
