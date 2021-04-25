@@ -2,14 +2,8 @@
 # -*- coding: utf-8 -*-
 
 source "${BashLib}/string/pad"
+source "${BashLib}/runner"
 
-runner()
-{
-    echo -e  "\033[36mInvoking:\033[0m $@"
-    echo -ne "\033[36m  Output:\033[0m "
-    $@
-    echo $'\n'
-}
 
 runner string_pad_left  10 - padleft
 runner string_pad_right 10 - padright

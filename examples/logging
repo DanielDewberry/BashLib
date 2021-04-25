@@ -1,0 +1,10 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+source "${BashLib}/logging"
+source "${BashLib}/runner"
+
+runner echo_info 'Message'
+runner echo_warn 'Message'
+runner echo_err  'Message'
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+source "${BashLib}/string/repeat"
+source "${BashLib}/runner"
+
+
+runner repeat 2 'Bash'
+runner repeat 2 'Bash' 'Separator'
+

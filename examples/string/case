@@ -1,0 +1,15 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+source "${BashLib}/string/case"
+source "${BashLib}/runner"
+
+
+runner ucase 'bash'
+runner ucase 'Bash'
+runner ucase 'BASH'
+
+runner lcase 'bash'
+runner lcase 'Bash'
+runner lcase 'BASH'
+
