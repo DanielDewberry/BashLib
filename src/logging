@@ -15,6 +15,27 @@
 ###############################################################################
 
 
+echo_logging()
+{
+    # Implements the info, warn and error logging
+    # 
+    # Arguments:
+    #   - level 
+    #   - message
+
+    local LoggingLevel="$1"
+    shift
+    local LoggingMessage="$@"
+
+    if [[ $# == 0 ]]; then
+        echo "$(date -Is) $LoggingLevel" >&2
+    else
+        echo "$(date -Is) $LoggingLevel $LoggingMessage" >&2
+    fi
+    return 0
+}
+
+
 echo_info()
 {
     # Print information level logging message to stderr
@@ -22,11 +43,7 @@ echo_info()
     # Arguments:
     #   - message
 
-    if [[ $# == 0 ]]; then
-        echo "$(date -Is) INFO" >&2
-    else
-        echo "$(date -Is) INFO $@" >&2
-    fi
+    echo_logging "INFO" "$@" >&2
     return 0
 }
 
@@ -38,11 +55,7 @@ echo_warn()
     # Arguments:
     #   - message
 
-    if [[ $# == 0 ]]; then
-        echo "$(date -Is) WARNING" >&2
-    else
-        echo "$(date -Is) WARNING $@" >&2
-    fi
+    echo_logging "WARNING" "$@" >&2
     return 0
 }
 
@@ -54,11 +67,7 @@ echo_err()
     # Arguments:
     #   - message
 
-    if [[ $# == 0 ]]; then
-        echo "$(date -Is) ERROR" >&2
-    else
-        echo "$(date -Is) ERROR $@" >&2
-    fi
+    echo_logging "ERROR" "$@" >&2
     return 0
 }
 
