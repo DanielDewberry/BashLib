@@ -32,9 +32,9 @@ string_pad_left()
     #   - 1   Incorrect number of arguments
     #
     # Example
-    #   string_pad_left                             \
-    #      10                                       \
-    #      '-'                                      \
+    #   string_pad_left \
+    #      10           \
+    #      '-'          \
     #      'Bash'
     #   Output:
     #       '------Bash'
@@ -76,9 +76,9 @@ string_pad_right()
     #   - 1   Incorrect number of arguments
     #
     # Example
-    #   string_pad_right                            \
-    #      10                                       \
-    #      '-'                                      \
+    #   string_pad_right \
+    #      10            \
+    #      '-'           \
     #      'Bash'
     #   Output:
     #       'Bash------'
@@ -120,9 +120,9 @@ string_pad_outer()
     #   - 1   Incorrect number of arguments
     #
     # Example
-    #   string_pad_outer                            \
-    #      10                                       \
-    #      '-'                                      \
+    #   string_pad_outer \
+    #      10            \
+    #      '-'           \
     #      'Bash'
     #   Output:
     #       '---Bash---'
@@ -167,10 +167,10 @@ string_pad_inner()
     #   - 1   Incorrect number of arguments
     #
     # Example
-    #   string_pad_inner  \
-    #      10             \
-    #      '-'            \
-    #      'Bash'         \
+    #   string_pad_inner \
+    #      10            \
+    #      '-'           \
+    #      'Bash'        \
     #      'File'
     #   Output:
     #       'Bash--File'
