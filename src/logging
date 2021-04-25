@@ -17,6 +17,11 @@
 
 echo_info()
 {
+    # Print information level logging message to stderr
+    #
+    # Arguments:
+    #   - message
+
     if [[ $# == 0 ]]; then
         echo "$(date -Is) INFO" >&2
     else
@@ -28,6 +33,11 @@ echo_info()
 
 echo_warn()
 {
+    # Print warning level logging message to stderr
+    #
+    # Arguments:
+    #   - message
+
     if [[ $# == 0 ]]; then
         echo "$(date -Is) WARNING" >&2
     else
@@ -39,6 +49,11 @@ echo_warn()
 
 echo_err()
 {
+    # Print error level logging message to stderr
+    #
+    # Arguments:
+    #   - message
+
     if [[ $# == 0 ]]; then
         echo "$(date -Is) ERROR" >&2
     else
