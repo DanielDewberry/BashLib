@@ -4,125 +4,118 @@
 source "${BashLib}/testing"
 source "${BashLib}/string/pad"
 
+
+# Section
+
 test_string_length \
     10             \
     "$(string_pad_left 10 '-' 'bash')" \
-    'string_pad_left: string length should be 10'
+    'string_pad_left: function yields correct string length'
 
 test_string_value \
     '------bash'  \
     "$(string_pad_left 10 '-' 'bash')" \
-    'string_pad_left: string value'
+    'string_pad_left: pad size 10, with 4 char string yields padded string'
 
-test_string_length \
-    8             \
-    "$(string_pad_left 8 '-' 'BASH')" \
-    'string_pad_left: string length should be 10'
+test_string_value \
+    '======bash'  \
+    "$(string_pad_left 10 '=' 'bash')" \
+    "string_pad_left: pad size 10 '=', with 4 char string yields padded string"
 
 test_string_value \
     '----BASH'  \
     "$(string_pad_left 8 '-' 'BASH')" \
-    'string_pad_left: string value'
-
-test_string_length \
-    10             \
-    "$(string_pad_left 6 '-' 'BashScript')" \
-    'string_pad_left: A string longer than the padding value yields the string only'
+    'string_pad_left: pad size 8, with 4 char string yields padded string'
 
 test_string_value \
     'BashScript'  \
     "$(string_pad_left 6 '-' 'BashScript')" \
-    'string_pad_left: A string longer than the padding value yields the string only'
+    'string_pad_left: pad size 6, with 10 char string yields original string'
 
 string_pad_left 6 '-' 'BashScript' >/dev/null
 rv="$?"
-test_numeric_value 0 "$rv" 'string_pad_left: success yields zero return value'
+test_numeric_value 0 "$rv" 'string_pad_left: successful operation yields zero return value'
 
 string_pad_left 'too few parameters' >/dev/null
 rv="$?"
 test_numeric_value \
     1 \
     "$rv" \
-    'string_pad_left: too few parameters yields return value 1'
+    'string_pad_left: passing too few parameters yields return value 1'
 
 string_pad_left \
     6 \
     '-' \
-    'BashScript' 'Too many parameters' >/dev/null
+    'BashScript' \
+    'too many parameters' >/dev/null
 rv="$?"
 test_numeric_value \
     1 \
     "$rv" \
-    'string_pad_left: too many parameters yields return value 1'
+    'string_pad_left: passing too many parameters yields return value 1'
 
+
+# Section
 
 test_string_length \
     10             \
     "$(string_pad_right 10 '-' 'bash')" \
-    'string_pad_right: string length should be 10'
+    'string_pad_right: function yields correct string length'
 
 test_string_value \
     'bash------'  \
     "$(string_pad_right 10 '-' 'bash')" \
-    'string_pad_right: string value'
+    'string_pad_right: pad size 10, with 4 char string yields padded string'
 
-test_string_length \
-    8             \
-    "$(string_pad_right 8 '-' 'BASH')" \
-    'string_pad_right: string length should be 10'
+test_string_value \
+    'bash======'  \
+    "$(string_pad_right 10 '=' 'bash')" \
+    "string_pad_right: pad size 10 '=', with 4 char string yields padded string"
 
 test_string_value \
     'BASH----'  \
     "$(string_pad_right 8 '-' 'BASH')" \
-    'string_pad_right: string value'
-
-test_string_length \
-    10             \
-    "$(string_pad_right 6 '-' 'BashScript')" \
-    'string_pad_right: A string longer than the padding value yields the string only'
+    'string_pad_right: pad size 8, with 4 char string yields padded string'
 
 test_string_value \
     'BashScript'  \
     "$(string_pad_right 6 '-' 'BashScript')" \
-    'string_pad_right: A string longer than the padding value yields the string only'
+    'string_pad_left: pad size 6, with 10 char string yields original string'
 
 string_pad_right 6 '-' 'BashScript' >/dev/null
 rv="$?"
-test_numeric_value 0 "$rv" 'string_pad_right: success yields zero return value'
+test_numeric_value 0 "$rv" 'string_pad_right: successful operation yields zero return value'
 
 string_pad_right 'too few parameters' >/dev/null
 rv="$?"
-test_numeric_value 1 "$rv" 'string_pad_right: too few parameters yields return value 1'
+test_numeric_value 1 "$rv" 'string_pad_right: passing too few parameters yields return value 1'
 
 string_pad_right 6 '-' 'BashScript' 'Too many parameters' >/dev/null
 rv="$?"
-test_numeric_value 1 "$rv" 'string_pad_right: too many parameters yields return value 1'
+test_numeric_value 1 "$rv" 'string_pad_right: passing too many parameters yields return value 1'
 
+
+# Section
 
 test_string_length \
     10             \
     "$(string_pad_outer 10 '-' 'bash')" \
-    'string_pad_outer: string length should be 10'
+    'string_pad_outer: function yields correct string length'
 
 test_string_value \
     '---bash---'  \
     "$(string_pad_outer 10 '-' 'bash')" \
-    'string_pad_outer: string value'
+    'string_pad_outer: pad size 10, with 4 char string yields padded string'
 
-test_string_length \
-    8             \
-    "$(string_pad_outer 8 '-' 'BASH')" \
-    'string_pad_outer: string length should be 10'
+test_string_value \
+    '===bash==='  \
+    "$(string_pad_outer 10 '=' 'bash')" \
+    "string_pad_outer: pad size 10 '=', with 4 char string yields padded string"
 
 test_string_value \
     '--BASH--'  \
     "$(string_pad_outer 8 '-' 'BASH')" \
-    'string_pad_outer: string value'
-
-test_string_length \
-    10             \
-    "$(string_pad_outer 6 '-' 'BashScript')" \
-    'string_pad_outer: A string longer than the padding value yields the string only'
+    'string_pad_outer: pad siz 8, with 4 char string yields padded string'
 
 test_string_value \
     'BashScript'  \
@@ -131,20 +124,15 @@ test_string_value \
 
 string_pad_outer 6 '-' 'BashScript' >/dev/null
 rv="$?"
-test_numeric_value 0 "$rv" 'string_pad_outer: success yields zero return value'
+test_numeric_value 0 "$rv" 'string_pad_outer: successful operation yields zero return value'
 
 string_pad_outer 'too few parameters' >/dev/null
 rv="$?"
-test_numeric_value 1 "$rv" 'string_pad_outer: too few parameters yields return value 1'
+test_numeric_value 1 "$rv" 'string_pad_outer: passing too few parameters yields return value 1'
 
 string_pad_outer 6 '-' 'BashScript' 'Too many parameters' >/dev/null
 rv="$?"
-test_numeric_value 1 "$rv" 'string_pad_outer: too many parameters yields return value 1'
-
-test_string_length \
-    7              \
-    "$(string_pad_outer 7 '-' 'Bash')" \
-    'string_pad_outer: Uneven padding renders the correct string size'
+test_numeric_value 1 "$rv" 'string_pad_outer: passing too many parameters yields return value 1'
 
 test_string_value \
     '-Bash--'     \
@@ -152,35 +140,32 @@ test_string_value \
     'string_pad_outer: Uneven padding renders the smaller padding size on the left'
 
 
+# Section
+
 test_string_length \
     10             \
     "$(string_pad_inner 10 '-' 'bash' 'file')" \
-    'string_pad_inner: string length should be 10'
+    'string_pad_inner: function yields correct string length'
 
 test_string_value \
     'bash--file'  \
     "$(string_pad_inner 10 '-' 'bash' 'file')" \
-    'string_pad_inner: string value'
+    'string_pad_inner: pad size 10, with two 4 char string yields padded string'
 
-test_string_length \
-    12             \
-    "$(string_pad_inner 12 '-' 'BASH' 'FILE')" \
-    'string_pad_inner: inner padding 12 chars with two 4 char words'
+test_string_value \
+    'bash==file'  \
+    "$(string_pad_inner 10 '=' 'bash' 'file')" \
+    'string_pad_inner: pad size 10, with two 4 char string yields padded string'
 
 test_string_value \
     'BASH----FILE'  \
     "$(string_pad_inner 12 '-' 'BASH' 'FILE')" \
-    'string_pad_inner: inner padding 12 chars with two 4 char words'
-
-test_string_length \
-    10             \
-    "$(string_pad_inner 6 '-' 'Bash' 'Script')" \
-    'string_pad_inner: A string longer than the padding value yields the string only'
+    'string_pad_inner: pad size 12, with two 4 char string yields padded string'
 
 test_string_value \
     'BashScript'  \
     "$(string_pad_inner 6 '-' 'Bash' 'Script')" \
-    'string_pad_inner: A string longer than the padding value yields the string only'
+    'string_pad_inner: When the combined length on the input strings exceeds that of the pad size, the two strings are concatenated and returned'
 
 string_pad_inner \
     6 \
@@ -191,7 +176,7 @@ rv="$?"
 test_numeric_value \
     0 \
     "$rv" \
-    'string_pad_inner: success yields zero return value'
+    'string_pad_inner: successful operation yields zero return value'
 
 string_pad_inner \
     'too few parameters' >/dev/null
@@ -199,7 +184,7 @@ rv="$?"
 test_numeric_value \
     1 \
     "$rv" \
-    'string_pad_inner: too few parameters yields return value 1'
+    'string_pad_inner: passing too few parameters yields return value 1'
 
 string_pad_inner \
     6 \
@@ -211,17 +196,8 @@ rv="$?"
 test_numeric_value \
     1 \
     "$rv" \
-    'string_pad_inner: too many parameters yields return value 1'
+    'string_pad_inner: passing too many parameters yields return value 1'
 
-# test_string_length \
-#     7              \
-#     "$(string_pad_inner 7 '-' 'Bash Scr')" \
-#     'string_pad_inner: Uneven padding renders the correct string size'
-# 
-# test_string_value \
-#     '-Bash--'     \
-#     "$(string_pad_inner 7 '-' 'Bash')" \
-#     'string_pad_inner: Uneven padding renders the smaller padding size on the left'
 
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
@@ -234,6 +210,5 @@ fi
 
 
 # Todo:
-# Test input char other then - works
 # Test input strings work
 

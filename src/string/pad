@@ -54,7 +54,7 @@ string_pad_left()
     fi
 
     pad=$(printf '%*s' "$StringLength")
-    pad=${pad// /-}
+    pad=${pad// /${StringPad}}
 
     printf '%*.*s' 0 $((StringLength - ${#String} )) "$pad"
     printf '%s' "$String"
@@ -98,7 +98,7 @@ string_pad_right()
     fi
 
     pad=$(printf '%*s' "$StringLength")
-    pad=${pad// /-}
+    pad=${pad// /${StringPad}}
 
     printf '%s' "$String"
     printf '%*.*s' 0 $((StringLength - ${#String} )) "$pad"
@@ -142,7 +142,7 @@ string_pad_outer()
     fi
 
     pad=$(printf '%*s' "$StringLength")
-    pad=${pad// /-}
+    pad=${pad// /${StringPad}}
 
     printf '%*.*s' 0 $(( ( StringLength - ${#String} ) / 2 )) "$pad"
     printf '%s' "$String"
@@ -191,7 +191,7 @@ string_pad_inner()
     fi
 
     pad=$(printf '%*s' "$StringLength")
-    pad=${pad// /-}
+    pad=${pad// /${StringPad}}
 
     printf '%s' "$LeftString"
     printf '%*.*s' 0 $(( StringLength - ${#LeftString} - ${#RightString} )) "$pad"
