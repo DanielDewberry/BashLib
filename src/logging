@@ -1,0 +1,55 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+###############################################################################
+# Logging module
+###############################################################################
+#
+# Defines useful logging functions
+#
+# Functions:
+#   - echo_info
+#   - echo_warn
+#   - echo_err
+#
+###############################################################################
+
+
+echo_info()
+{
+    if [[ $# == 0 ]]; then
+        echo "$(date -Is) INFO" >&2
+    else
+        echo "$(date -Is) INFO $@" >&2
+    fi
+    return 0
+}
+
+
+echo_warn()
+{
+    if [[ $# == 0 ]]; then
+        echo "$(date -Is) WARNING" >&2
+    else
+        echo "$(date -Is) WARNING $@" >&2
+    fi
+    return 0
+}
+
+
+echo_err()
+{
+    if [[ $# == 0 ]]; then
+        echo "$(date -Is) ERROR" >&2
+    else
+        echo "$(date -Is) ERROR $@" >&2
+    fi
+    return 0
+}
+
+
+# echo "PID  $BASHPID"
+# echo "PPID $PPID"
+# echo "UID  $UID"
+# echo "EUID $UID"
+

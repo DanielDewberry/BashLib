@@ -6,3 +6,4 @@ export BashLib="${PWD}/src"
 ./tests/string/pad
 ./tests/string/repeat
 ./tests/string/case
+./tests/logging

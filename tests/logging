@@ -1,0 +1,78 @@
+#! /bin/bash
+# -*- coding: utf-8 -*-
+
+source "${BashLib}/testing"
+source "${BashLib}/logging"
+
+
+mockdate='1970-01-01T00:00:00,000000000+00:00'
+
+date()
+{
+    echo "$mockdate"
+    return 0
+}
+
+
+# Section
+
+test_string_value \
+    "$mockdate INFO" \
+    "$(echo_info 2>&1)" \
+    'echo_info: zero arguments yields date and logging level only'
+
+test_string_value \
+    "$mockdate INFO Hello" \
+    "$(echo_info 'Hello' 2>&1)" \
+    'echo_info: one argument yields date, logging level and message'
+
+test_string_value \
+    "$mockdate INFO Hello world" \
+    "$(echo_info 'Hello' 'world' 2>&1)" \
+    'echo_info: two arguments yields date, logging level and message'
+
+
+# Section
+
+test_string_value \
+    "$mockdate WARNING" \
+    "$(echo_warn 2>&1)" \
+    'echo_warn: zero arguments yields date and logging level only'
+
+test_string_value \
+    "$mockdate WARNING Hello" \
+    "$(echo_warn 'Hello' 2>&1)" \
+    'echo_warn: one argument yields date, logging level and message'
+
+test_string_value \
+    "$mockdate WARNING Hello world" \
+    "$(echo_warn 'Hello' 'world' 2>&1)" \
+    'echo_warn: two arguments yields date, logging level and message'
+
+
+# Section
+
+test_string_value \
+    "$mockdate ERROR" \
+    "$(echo_err 2>&1)" \
+    'echo_err: zero arguments yields date and logging level only'
+
+test_string_value \
+    "$mockdate ERROR Hello" \
+    "$(echo_err 'Hello' 2>&1)" \
+    'echo_err: one argument yields date, logging level and message'
+
+test_string_value \
+    "$mockdate ERROR Hello world" \
+    "$(echo_err 'Hello' 'world' 2>&1)" \
+    'echo_err: two arguments yields date, logging level and message'
+
+
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
+    test_summary
+
+    if (( TestCountFail != 0 )); then
+        list_failed_tests
+    fi
+fi
+
