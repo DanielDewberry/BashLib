@@ -8,9 +8,10 @@
 # Defines useful logging functions
 #
 # Functions:
-#   - echo_info
-#   - echo_warn
-#   - echo_err
+#   - echo_logging   Implements the underlying logging mechanism
+#   - echo_info      Proxy for echo_logging INFO    "$@"
+#   - echo_warn      Proxy for echo_logging WARNING "$@"
+#   - echo_err       Proxy for echo_logging ERROR   "$@"
 #
 ###############################################################################
 
