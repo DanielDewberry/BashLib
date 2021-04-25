@@ -1,0 +1,6 @@
+#! /bin/bash
+# -*- coding: utf-8 -*-
+
+export BashLib="${PWD}/src"
+
+./tests/string/pad

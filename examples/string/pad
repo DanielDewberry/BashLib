@@ -1,0 +1,18 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+source "${BashLib}/string/pad"
+
+runner()
+{
+    echo -e  "\033[36mInvoking:\033[0m $@"
+    echo -ne "\033[36m  Output:\033[0m "
+    $@
+    echo $'\n'
+}
+
+runner string_pad_left  10 - padleft
+runner string_pad_right 10 - padright
+runner string_pad_outer 10 - padouter
+runner string_pad_inner 10 - pad inner
+
