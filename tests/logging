@@ -9,6 +9,8 @@ mockdate='1970-01-01T00:00:00,000000000+00:00'
 
 date()
 {
+    # Mock the date utility to provide deterministic testing
+
     echo "$mockdate"
     return 0
 }
