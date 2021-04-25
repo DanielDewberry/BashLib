@@ -4,3 +4,4 @@
 export BashLib="${PWD}/src"
 
 ./tests/string/pad
+./tests/string/case
