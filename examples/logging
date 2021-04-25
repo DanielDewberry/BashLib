@@ -1,6 +1,8 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
+# shellcheck source=/dev/null
+# shellcheck disable=SC2154
 source "${BashLib}/logging"
 source "${BashLib}/runner"
 

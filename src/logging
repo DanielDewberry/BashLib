@@ -26,7 +26,7 @@ echo_logging()
 
     local LoggingLevel="$1"
     shift
-    local LoggingMessage="$@"
+    local LoggingMessage="$*"
 
     if [[ $# == 0 ]]; then
         echo "$(date -Is) $LoggingLevel" >&2

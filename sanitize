@@ -1,0 +1,4 @@
+#!/bin/bash
+
+grep -lr bin/bash  | sort | grep -vE '.*swp$' |xargs unbuffer shellcheck | less
+
