@@ -1,6 +1,10 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
+if [[ -z "${BashLib}" ]]; then
+    echo 'BashLib environment variable is not set' >&2
+    exit 1
+fi
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
 source "${BashLib}/string/pad"
