@@ -9,8 +9,8 @@ if [[ -z "${BashLib}" ]]; then
 fi
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
-source "${BashLib}/testing"
-source "${BashLib}/string/case"
+source "${BashLib}/testing.sh"
+source "${BashLib}/string/case.sh"
 
 
 # Section

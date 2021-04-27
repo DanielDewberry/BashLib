@@ -9,8 +9,8 @@ if [[ -z "${BashLib}" ]]; then
 fi
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
-source "${BashLib}/logging"
-source "${BashLib}/runner"
+source "${BashLib}/logging.sh"
+source "${BashLib}/runner.sh"
 
 runner echo_info 'Message'
 runner echo_warn 'Message'
