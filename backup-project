@@ -1,3 +1,0 @@
-#!/bin/bash
-
-find . -type f  -not -name '*.gz' | xargs tar --force-local -pcvzf "project-$(date -Is).tar.gz"
