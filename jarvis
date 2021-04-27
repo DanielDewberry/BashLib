@@ -1,0 +1,90 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+export BashLib="${PWD}/src"
+# shellcheck source=/dev/null
+source "${BashLib}/logging"
+
+usage()
+{
+    cat <<EOF | sed 's/^    //'
+    ${0}: Command [Arguments]
+
+        Commands:
+            backup-project  No arguments
+            sanitize        No arguments
+            set-executable  No arguments
+            test-runner     No arguments
+EOF
+}
+
+Action="$1"
+shift
+
+case "${Action}" in
+    backup-project)
+        if (( "$#" > 0 )); then
+            echo_err "unexpected arguments detected: ${Action} $*"
+            exit 1
+        fi
+
+        find . -type f  -not -name '*.gz' \
+            | xargs tar --force-local -pcvzf "project-$(date -Is).tar.gz"
+        ;;
+
+    sanitize)
+        if (( "$#" > 0 )); then
+            echo_err "unexpected arguments detected: ${Action} $*"
+            exit 1
+        fi
+
+        grep  -lr bin/bash \
+            | sort \
+            | grep -vE '.*swp$' \
+            | xargs shellcheck \
+        ;;
+
+    set-executable)
+        if (( "$#" > 0 )); then
+            echo_err "unexpected arguments detected: ${Action} $*"
+            exit 1
+        fi
+
+        find                  \
+            tests             \
+            examples          \
+            -type f           \
+            -not -name '*swp' \
+            -exec chmod 754 {} \;
+
+        find                  \
+            tests             \
+            examples          \
+            -type f           \
+            -not -name '*swp' \
+            -exec chmod ugo-x {} \;
+        ;;
+
+    test-runner)
+        if (( "$#" > 0 )); then
+            echo_err "unexpected arguments detected: ${Action} $*"
+            exit 1
+        fi
+
+        ./tests/string/pad
+        ./tests/string/repeat
+        ./tests/string/case
+        ./tests/logging
+        ;;
+
+    help)
+        usage
+        ;;
+
+    *)
+        usage
+        exit 2
+        ;;
+esac
+
+exit
