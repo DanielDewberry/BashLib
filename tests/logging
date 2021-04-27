@@ -9,8 +9,8 @@ if [[ -z "${BashLib}" ]]; then
 fi
 # shellcheck disable=SC2154
 # shellcheck source=/dev/null
-source "${BashLib}/testing"
-source "${BashLib}/logging"
+source "${BashLib}/testing.sh"
+source "${BashLib}/logging.sh"
 
 
 mockdate='1970-01-01T00:00:00,000000000+00:00'
