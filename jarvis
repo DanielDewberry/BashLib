@@ -11,12 +11,34 @@ usage()
     ${0}: Command [Arguments]
 
         Commands:
-            backup-project  No arguments
-            sanitize        No arguments
-            set-executable  No arguments
-            test-runner     No arguments
+            backup-project      No arguments
+            new-file-template   No arguments
+            sanitize            No arguments
+            set-executable      No arguments
+            test-runner         No arguments
 EOF
 }
+
+
+new-file-template()
+{
+    cat <<'EOF'
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+# shellcheck source=/dev/null
+# shellcheck disable=SC2154
+if [[ -z "${BashLib}" ]]; then
+    printf  'BashLib environment variable is not set' >&2
+    exit 1
+fi
+# shellcheck disable=SC2154
+# shellcheck source=/dev/null
+source "${BashLib}/testing.sh"
+source "${BashLib}/utility.sh"
+EOF
+}
+
 
 Action="$1"
 shift
@@ -30,6 +52,10 @@ case "${Action}" in
 
         find . -type f  -not -name '*.gz' \
             | xargs tar --force-local -pcvzf "project-$(date -Is).tar.gz"
+        ;;
+
+    new-file-template)
+        new-file-template
         ;;
 
     sanitize)
