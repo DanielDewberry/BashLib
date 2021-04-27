@@ -74,6 +74,7 @@ case "${Action}" in
         ./tests/string/repeat
         ./tests/string/case
         ./tests/logging
+        ./tests/utility
         ;;
 
     help)
