@@ -6,6 +6,6 @@ find                  \
     tests             \
     examples          \
     -type f           \
-    -not -name '*swp' \
+    -name '*.sh'      \
     -exec chmod 754 {} \;
 
