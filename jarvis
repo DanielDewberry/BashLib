@@ -3,7 +3,7 @@
 
 export BashLib="${PWD}/src"
 # shellcheck source=/dev/null
-source "${BashLib}/logging"
+source "${BashLib}/logging.sh"
 
 usage()
 {
@@ -58,8 +58,7 @@ case "${Action}" in
             -exec chmod 754 {} \;
 
         find                  \
-            tests             \
-            examples          \
+            src               \
             -type f           \
             -not -name '*swp' \
             -exec chmod ugo-x {} \;
