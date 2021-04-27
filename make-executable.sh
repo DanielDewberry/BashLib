@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 find                  \
-    src               \
     tests             \
     examples          \
     -type f           \
