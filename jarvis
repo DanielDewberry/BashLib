@@ -12,6 +12,7 @@ usage()
 
         Commands:
             backup-project         No arguments
+            deploy-template        No arguments
             find-executable-files  No arguments
             find-sh-files          No arguments
             shellcheck-files       No arguments (files provided on stdin)
@@ -41,6 +42,37 @@ fi
 # shellcheck source=/dev/null
 source "${BashLib}/testing.sh"
 source "${BashLib}/utility.sh"
+EOF
+}
+
+
+fn_deploy_template() {
+    cat <<'EOF'
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+main()
+{
+  # Synopsis
+  #
+  #
+  # Arguments
+  #
+  #
+  # Return codes
+  #
+  #
+  # FDs
+  #
+  #
+
+  return "$?"
+}
+
+if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
+  main "$@"
+  exit "$?"
+fi
 EOF
 }
 
@@ -161,6 +193,10 @@ case "${Action}" in
             -type f           \
             -not -name '*swp' \
             -exec chmod ugo-x {} \;
+        ;;
+
+    deploy-template)
+        fn_deploy_template
         ;;
 
     test-runner)
