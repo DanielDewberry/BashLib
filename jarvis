@@ -11,11 +11,16 @@ usage()
     ${0}: Command [Arguments]
 
         Commands:
-            backup-project      No arguments
-            new-file-template   No arguments
-            sanitize            No arguments
-            set-executable      No arguments
-            test-runner         No arguments
+            backup-project         No arguments
+            find-executable-files  No arguments
+            find-sh-files          No arguments
+            shellcheck-files       No arguments (files provided on stdin)
+            shfmt-files            Run shfmt on files whose names are provided
+                                     on stdin.  Argument: print / replace
+            new-file-template      No arguments
+            sanitize               No arguments
+            set-executable         No arguments
+            test-runner            No arguments
 EOF
 }
 
@@ -40,6 +45,58 @@ EOF
 }
 
 
+fn_find_shell_files() {
+  find . -type f -name '*.sh'
+  return
+}
+
+
+fn_find_executable_files() {
+  find . -type f -executable | grep -v '.git/'
+  return
+}
+
+
+fn_shellcheck_files_from_stdin() {
+  local -a ARRAY
+  mapfile -t ARRAY
+  readonly ARRAY
+  shellcheck --color=always "${ARRAY[@]}"
+  return
+}
+
+
+fn_shfmt_files_stdin() {
+  local -a ARRAY
+  local Action
+
+  Action=${1:-print}
+  readonly Action
+  shift
+
+  mapfile -t ARRAY
+  readonly ARRAY
+
+  if [[ "${Action}" == 'print' ]]; then
+    shfmt -ln bash -d -ci -i 2 "${ARRAY[@]}"
+  elif [[ "${Action}" == 'replace' ]]; then
+    for filename in "${ARRAY[@]}"; do
+      if [[ ! -f "${filename}" ]]; then
+        printf 'could not find file %s' "${filename}"
+        continue
+      fi
+      replaced_data="$(shfmt -ln bash -ci -i 2 "${filename}")"
+      printf '%s' "${replaced_data}" >"${filename}"
+    done
+  else
+    printf 'unrecognised value\n' >&2
+    return 1
+  fi
+
+  return
+}
+
+
 Action="$1"
 shift
 
@@ -52,6 +109,22 @@ case "${Action}" in
 
         find . -type f  -not -name '*.gz' \
             | xargs tar --force-local -pcvzf "project-$(date -Is).tar.gz"
+        ;;
+
+    find-sh-files)
+        fn_find_shell_files
+        ;;
+
+    find-executable-files)
+        fn_find_executable_files
+        ;;
+
+    shellcheck-files)
+        fn_shellcheck_files_from_stdin
+        ;;
+
+    shfmt-files)
+        fn_shfmt_files_stdin "$@"
         ;;
 
     new-file-template)
