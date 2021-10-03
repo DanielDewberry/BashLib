@@ -208,7 +208,7 @@ case "${Action}" in
         find ./tests -type f -executable -exec {} \;
         ;;
 
-    help)
+    --help|help)
         usage
         ;;
 
