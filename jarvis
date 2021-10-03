@@ -44,9 +44,8 @@ source "${BashLib}/utility.sh"
 EOF
 }
 
-
 fn_deploy_template() {
-    cat <<'EOF'
+  cat <<'EOF'
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
@@ -75,24 +74,20 @@ fi
 EOF
 }
 
-
 fn_find_shell_files() {
   find ./src -type f -name '*.sh'
   return
 }
-
 
 fn_find_executable_files() {
   find ./jarvis ./tests ./examples -type f -executable
   return
 }
 
-
 fn_identify-function-line() {
   grep --color=always -E '^[^# ]+\(\) {'
   return
 }
-
 
 fn_shellcheck_files_from_stdin() {
   local -a ARRAY
@@ -101,7 +96,6 @@ fn_shellcheck_files_from_stdin() {
   shellcheck --color=always "${ARRAY[@]}"
   return
 }
-
 
 fn_shfmt_files_stdin() {
   local -a ARRAY
@@ -133,19 +127,18 @@ fn_shfmt_files_stdin() {
   return
 }
 
-
 Action="$1"
 shift
 
 case "${Action}" in
   backup-project)
-    if (( "$#" > 0 )); then
+    if (("$#" > 0)); then
       echo_err "unexpected arguments detected: ${Action} $*"
       exit 1
     fi
 
-    find . -type f  -not -name '*.gz' -and -not \( -type f -name backups \) \
-        | xargs tar --force-local -pcvzf "backups/project-$(date -Is).tar.gz"
+    find . -type f -not -name '*.gz' -and -not \( -type f -name backups \) |
+      xargs tar --force-local -pcvzf "backups/project-$(date -Is).tar.gz"
     ;;
 
   find-sh-files)
@@ -173,34 +166,34 @@ case "${Action}" in
     ;;
 
   sanitize)
-    if (( "$#" > 0 )); then
+    if (("$#" > 0)); then
       echo_err "unexpected arguments detected: ${Action} $*"
       exit 1
     fi
 
-   grep  -lr bin/bash \
-       | sort \
-       | grep -vE '.*swp$' \
-       | xargs shellcheck \
-   ;;
+    grep -lr bin/bash |
+      sort |
+      grep -vE '.*swp$' |
+      xargs shellcheck
+    ;;
 
   set-executable)
-    if (( "$#" > 0 )); then
+    if (("$#" > 0)); then
       echo_err "unexpected arguments detected: ${Action} $*"
       exit 1
     fi
 
-    find                 \
-      tests              \
-      examples           \
-      -type f            \
-      -not -name '*swp'  \
+    find \
+      tests \
+      examples \
+      -type f \
+      -not -name '*swp' \
       -exec chmod 754 {} \;
 
-    find                   \
-      src                  \
-      -type f              \
-      -not -name '*swp'    \
+    find \
+      src \
+      -type f \
+      -not -name '*swp' \
       -exec chmod ugo-x {} \;
     ;;
 
@@ -209,7 +202,7 @@ case "${Action}" in
     ;;
 
   test-runner)
-    if (( "$#" > 0 )); then
+    if (("$#" > 0)); then
       echo_err "unexpected arguments detected: ${Action} $*"
       exit 1
     fi
@@ -217,7 +210,7 @@ case "${Action}" in
     find ./tests -type f -executable -exec {} \;
     ;;
 
-  --help|help)
+  --help | help)
     usage
     ;;
 
