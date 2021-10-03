@@ -23,7 +23,7 @@ repeat() {
   elif ((Occurences == 1)); then
     printf 'x\n'
   else
-    printf "$String"
+    printf '%s' "$String"
     printf "${Separator}${String}"'%.s' $(seq 1 "$((--Occurences))")
   fi
   return 0
