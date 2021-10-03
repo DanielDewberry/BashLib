@@ -4,8 +4,8 @@
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
 if [[ -z "${BashLib}" ]]; then
-    echo 'BashLib environment variable is not set' >&2
-    exit 1
+  echo 'BashLib environment variable is not set' >&2
+  exit 1
 fi
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
@@ -14,5 +14,4 @@ source "${BashLib}/runner.sh"
 
 runner echo_info 'Message'
 runner echo_warn 'Message'
-runner echo_err  'Message'
-
+runner echo_err 'Message'

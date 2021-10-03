@@ -4,14 +4,13 @@
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
 if [[ -z "${BashLib}" ]]; then
-    echo 'BashLib environment variable is not set' >&2
-    exit 1
+  echo 'BashLib environment variable is not set' >&2
+  exit 1
 fi
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
 source "${BashLib}/string/case.sh"
 source "${BashLib}/runner.sh"
-
 
 runner ucase 'bash'
 runner ucase 'Bash'
@@ -20,4 +19,3 @@ runner ucase 'BASH'
 runner lcase 'bash'
 runner lcase 'Bash'
 runner lcase 'BASH'
-
