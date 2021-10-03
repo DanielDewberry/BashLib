@@ -78,13 +78,13 @@ EOF
 
 
 fn_find_shell_files() {
-  find . -type f -name '*.sh'
+  find ./src -type f -name '*.sh'
   return
 }
 
 
 fn_find_executable_files() {
-  find . -type f -executable | grep -v '.git/'
+  find ./jarvis ./tests ./examples -type f -executable
   return
 }
 
