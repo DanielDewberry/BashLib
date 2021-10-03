@@ -96,11 +96,7 @@ case "${Action}" in
             exit 1
         fi
 
-        ./tests/string/pad
-        ./tests/string/repeat
-        ./tests/string/case
-        ./tests/logging
-        ./tests/utility
+        find ./tests -type f -executable -exec {} \;
         ;;
 
     help)
