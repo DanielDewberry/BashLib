@@ -6,23 +6,23 @@ export BashLib="${PWD}/src"
 source "${BashLib}/logging.sh"
 
 usage() {
-  cat <<EOF | sed 's/^    //'
+  cat <<EOF
     ${0}: Command [Arguments]
 
-        Commands:
-            backup-project         No arguments
-            deploy-template        No arguments
-            find-executable-files  No arguments
-            find-sh-files          No arguments
-            identify-function-line Pass lines on stdin
-                                     No arguments
-            shellcheck-files       No arguments (files provided on stdin)
-            shfmt-files            Run shfmt on files whose names are provided
-                                     on stdin.  Argument: print / replace
-            new-file-template      No arguments
-            sanitize               No arguments
-            set-executable         No arguments
-            test-runner            No arguments
+Commands:
+    backup-project         No arguments
+    deploy-template        No arguments
+    find-executable-files  No arguments
+    find-sh-files          No arguments
+    identify-function-line Pass lines on stdin
+                             No arguments
+    shellcheck-files       No arguments (files provided on stdin)
+    shfmt-files            Run shfmt on files whose names are provided
+                             on stdin.  Argument: print / replace
+    new-file-template      No arguments
+    sanitize               No arguments
+    set-executable         No arguments
+    test-runner            No arguments
 EOF
 }
 
