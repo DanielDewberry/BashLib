@@ -1,3 +1,6 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
 repeat() {
   # Repeat character or string, optionally separated by another sequence
   #
