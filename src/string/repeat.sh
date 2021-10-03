@@ -19,12 +19,13 @@ repeat() {
   local Separator="$3"
 
   if ((Occurences == 0)); then
-    printf '\n'
-  elif ((Occurences == 1)); then
-    printf 'x\n'
-  else
-    printf '%s' "$String"
-    printf "${Separator}${String}"'%.s' $(seq 1 "$((--Occurences))")
+    return
   fi
+
+  ((--Occurences))
+  printf '%s' "$String"
+  for ((i = 0; i < Occurences; i++)); do
+    printf '%s%s' "${Separator}" "${String}"
+  done
   return 0
 }
