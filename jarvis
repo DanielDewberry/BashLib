@@ -139,8 +139,8 @@ case "${Action}" in
             exit 1
         fi
 
-        find . -type f  -not -name '*.gz' \
-            | xargs tar --force-local -pcvzf "project-$(date -Is).tar.gz"
+        find . -type f  -not -name '*.gz' -and -not \( -type f -name backups \) \
+            | xargs tar --force-local -pcvzf "backups/project-$(date -Is).tar.gz"
         ;;
 
     find-sh-files)
