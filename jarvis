@@ -14,6 +14,8 @@ usage() {
             deploy-template        No arguments
             find-executable-files  No arguments
             find-sh-files          No arguments
+            identify-function-line Pass lines on stdin
+                                     No arguments
             shellcheck-files       No arguments (files provided on stdin)
             shfmt-files            Run shfmt on files whose names are provided
                                      on stdin.  Argument: print / replace
@@ -86,6 +88,12 @@ fn_find_executable_files() {
 }
 
 
+fn_identify-function-line() {
+  grep --color=always -E '^[^# ]+\(\) {'
+  return
+}
+
+
 fn_shellcheck_files_from_stdin() {
   local -a ARRAY
   mapfile -t ARRAY
@@ -146,6 +154,10 @@ case "${Action}" in
 
   find-executable-files)
     fn_find_executable_files
+    ;;
+
+  identify-function-line)
+    fn_identify-function-line
     ;;
 
   shellcheck-files)
