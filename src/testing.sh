@@ -76,9 +76,9 @@ unit_test_result() {
   ((++TestCount))
 
   if [ -n "$test_context" ]; then
-    echo -e "$test_status  \"$test_type\"  \"$test_name\"  Comment: \"$test_context\""
+    printf '%b  "%s"  "%s"  Comment: "%s"\n' "$test_status"  "$test_type"  "$test_name"  "$test_context"
   else
-    echo -e "$test_status  \"$test_type\"  \"$test_name\""
+    printf '%b  "%s"  "%s"\n' "$test_status"  "$test_type"  "$test_name"
   fi
 
   return 0
@@ -189,16 +189,16 @@ test_summary() {
   # Example
   #     test_summary
 
-  echo "Passes  $TestCountPass"
-  echo "Fails   $TestCountFail"
-  echo "Total   $TestCount  $((100 * TestCountPass / TestCount))% Success"
+  printf 'Passes  %s\n' "$TestCountPass"
+  printf 'Fails   %s\n' "$TestCountFail"
+  printf 'Total   %s %s%% Success\n' "$TestCount"  "$((100 * TestCountPass / TestCount))"
 }
 
 list_failed_tests() {
   if ((TestCountFail != 0)); then
-    echo 'Failures:'
+    printf 'Failures:\n'
     for failure in "${TestFails[@]}"; do
-      echo "- $failure"
+      printf '- %s\n' "${failure}"
     done
   fi
 }

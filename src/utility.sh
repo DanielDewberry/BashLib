@@ -7,7 +7,7 @@ requires-root() {
   # Returns 0 on success, exit 99 otherwise
 
   if ((EUID != 0)); then
-    echo 'Must run as root' >&2
+    printf 'Must run as root\n' >&2
     exit 99
   fi
   return 0

@@ -27,9 +27,9 @@ echo_logging() {
   local LoggingMessage="$*"
 
   if [[ $# == 0 ]]; then
-    echo "$(date -Is) $LoggingLevel" >&2
+    printf '%s %s\n' "$(date -Is)" "$LoggingLevel" >&2
   else
-    echo "$(date -Is) $LoggingLevel $LoggingMessage" >&2
+    printf '%s %s %s' "$(date -Is)" "$LoggingLevel" "$LoggingMessage" >&2
   fi
   return 0
 }
@@ -64,7 +64,7 @@ echo_err() {
   return 0
 }
 
-# echo "PID  $BASHPID"
-# echo "PPID $PPID"
-# echo "UID  $UID"
-# echo "EUID $UID"
+# printf '%s %s\n' "PID"  "$BASHPID"
+# printf '%s %s\n' "PPID" "$PPID"
+# printf '%s %s\n' "UID"  "$UID"
+# printf '%s %s\n' "EUID" "$UID"

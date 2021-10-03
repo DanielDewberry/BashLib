@@ -16,9 +16,9 @@ repeat() {
   local Separator="$3"
 
   if ((Occurences == 0)); then
-    echo ''
+    printf '\n'
   elif ((Occurences == 1)); then
-    echo 'x'
+    printf 'x\n'
   else
     printf "$String"
     printf "${Separator}${String}"'%.s' $(seq 1 "$((--Occurences))")

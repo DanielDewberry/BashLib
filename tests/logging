@@ -4,7 +4,7 @@
 # shellcheck source=/dev/null
 # shellcheck disable=SC2154
 if [[ -z "${BashLib}" ]]; then
-  echo 'BashLib environment variable is not set' >&2
+  printf 'BashLib environment variable is not set\n' >&2
   exit 1
 fi
 # shellcheck disable=SC2154
@@ -17,7 +17,7 @@ mockdate='1970-01-01T00:00:00,000000000+00:00'
 date() {
   # Mock the date utility to provide deterministic testing
 
-  echo "$mockdate"
+  printf '%s\n' "$mockdate"
   return 0
 }
 

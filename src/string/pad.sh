@@ -47,7 +47,7 @@ string_pad_left() {
   local pad
 
   if ((${#String} >= StringLength)); then
-    echo "$String"
+    printf '%s\n' "${String}"
     return 0
   fi
 
@@ -89,7 +89,7 @@ string_pad_right() {
   local pad
 
   if ((${#String} >= StringLength)); then
-    echo "$String"
+    printf '%s\n' "${String}"
     return 0
   fi
 
@@ -131,7 +131,7 @@ string_pad_outer() {
   local pad
 
   if ((${#String} >= StringLength)); then
-    echo "$String"
+    printf '%s\n' "$String"
     return 0
   fi
 
@@ -178,7 +178,7 @@ string_pad_inner() {
   local pad
 
   if ((${#LeftString} + ${#RightString} >= StringLength)); then
-    echo "${LeftString}${RightString}"
+    printf '%s%s\n' "${LeftString}" "${RightString}"
     return 0
   fi
 
