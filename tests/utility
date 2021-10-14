@@ -17,11 +17,11 @@ source "${BashLib}/utility.sh"
 if ((EUID == 0)); then
   printf 'Running this test as root will mask the actual functionality.\n' >&2
 
-  test_numeric_value 99 -1 'test non-root execution yields exit code 99'
+  testing::test_numeric_value 99 -1 'test non-root execution yields exit code 99'
 else
-  (requires-root &>/dev/null)
+  (system::requires-root &>/dev/null)
   rv="$?"
-  test_numeric_value \
+  testing::test_numeric_value \
     99 \
     "$rv" \
     "test non-root execution yields exit code 99"
@@ -30,10 +30,10 @@ fi
 if ((EUID == 0)); then
   printf 'Running this test as root will mask the actual functionality.\n' >&2
 
-  test_string_value 99 -1 'test non-root execution yields error message to stderr'
+  testing::test_string_value 99 -1 'test non-root execution yields error message to stderr'
 else
-  ErrMsg="$(requires-root 2>&1 >/dev/null)"
-  test_string_value \
+  ErrMsg="$(system::requires-root 2>&1 >/dev/null)"
+  testing::test_string_value \
     'Must run as root' \
     "$ErrMsg" \
     "test non-root execution yields error message to stderr"
@@ -42,10 +42,10 @@ fi
 if ((EUID == 0)); then
   printf 'Running this test as root will mask the actual functionality.\n' >&2
 
-  test_string_value 99 -1 'test non-root execution yields no message to stdout'
+  testing::test_string_value 99 -1 'test non-root execution yields no message to stdout'
 else
-  ErrMsg="$(requires-root >/dev/null 2>&1)"
-  test_string_value \
+  ErrMsg="$(system::requires-root >/dev/null 2>&1)"
+  testing::test_string_value \
     '' \
     "$ErrMsg" \
     "test non-root execution yields no message to stdout"
@@ -54,16 +54,16 @@ fi
 if ((EUID == 0)); then
   printf 'Running this test as root will mask the actual functionality.\n' >&2
 
-  test_numeric_value 0 -1 'test root execution yields return code 0'
+  testing::test_numeric_value 0 -1 'test root execution yields return code 0'
 else
 
   sudo -i bash <<EOF
-$(type requires-root | sed -n '2,$ p')
-requires-root
+$(type system::requires-root | sed -n '2,$ p')
+system::requires-root
 EOF
 
   rv="$?"
-  test_numeric_value \
+  testing::test_numeric_value \
     0 \
     "$rv" \
     'test root execution yields return code 0'
@@ -72,16 +72,16 @@ fi
 if ((EUID == 0)); then
   printf 'Running this test as root will mask the actual functionalitya\n.' >&2
 
-  test_string_value 99 -1 'test root execution yields no message to stdout'
+  testing::test_string_value 99 -1 'test root execution yields no message to stdout'
 else
   ErrMsg="$(
     sudo -i bash <<EOF
-$(type requires-root | sed -n '2,$ p')
-requires-root
+$(type system::requires-root | sed -n '2,$ p')
+system::requires-root
 EOF
   )"
 
-  test_string_value \
+  testing::test_string_value \
     '' \
     "$ErrMsg" \
     "test root execution yields no message to stdout"
@@ -90,24 +90,24 @@ fi
 if ((EUID == 0)); then
   printf 'Running this test as root will mask the actual functionality.\n' >&2
 
-  test_string_value 99 -1 'test root execution yields error message to stderr'
+  testing::test_string_value 99 -1 'test root execution yields error message to stderr'
 else
   ErrMsg="$(
     sudo -i bash <<EOF
-$(type requires-root | sed -n '2,$ p')
-requires-root
+$(type system::requires-root | sed -n '2,$ p')
+system::requires-root
 EOF
   )"
-  test_string_value \
+  testing::test_string_value \
     '' \
     "$ErrMsg" \
     "test root execution yields error message to stderr"
 fi
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
-  test_summary
+  testing::test_summary
 
   if ((TestCountFail != 0)); then
-    list_failed_tests
+    testing::list_failed_tests
   fi
 fi

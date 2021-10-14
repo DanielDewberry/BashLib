@@ -1,7 +1,7 @@
 #! /bin/bash
 # -*- coding: utf-8 -*-
 
-requires-root() {
+system::requires-root() {
   # Check user has root privileges
   #
   # Returns 0 on success, exit 99 otherwise

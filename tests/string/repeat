@@ -12,55 +12,55 @@ fi
 source "${BashLib}/testing.sh"
 source "${BashLib}/string/repeat.sh"
 
-test_string_value \
+testing::test_string_value \
   '' \
-  "$(repeat 0 'x')" \
-  'repeat: zero occurrences yields empty string'
+  "$(string::repeat 0 'x')" \
+  'string::repeat: zero occurrences yields empty string'
 
-test_string_value \
+testing::test_string_value \
   'x' \
-  "$(repeat 1 'x')" \
-  'repeat: one occurrence yields single occurence of the character'
+  "$(string::repeat 1 'x')" \
+  'string::repeat: one occurrence yields single occurence of the character'
 
-test_string_value \
+testing::test_string_value \
   'xx' \
-  "$(repeat 2 'x')" \
-  'repeat: two occurrences yields two occurences of the character'
+  "$(string::repeat 2 'x')" \
+  'string::repeat: two occurrences yields two occurences of the character'
 
-test_string_value \
+testing::test_string_value \
   '' \
-  "$(repeat 0 'x' 'y')" \
-  'repeat: zero occurrences with separator yields empty string'
+  "$(string::repeat 0 'x' 'y')" \
+  'string::repeat: zero occurrences with separator yields empty string'
 
-test_string_value \
+testing::test_string_value \
   'x' \
-  "$(repeat 1 'x' 'y')" \
-  'repeat: one occurrence with separator yields single occurence of the character without the separator'
+  "$(string::repeat 1 'x' 'y')" \
+  'string::repeat: one occurrence with separator yields single occurence of the character without the separator'
 
-test_string_value \
+testing::test_string_value \
   'xyx' \
-  "$(repeat 2 'x' 'y')" \
-  'repeat: two occurrences with separator yields two occurences of the character separated by the the separator'
+  "$(string::repeat 2 'x' 'y')" \
+  'string::repeat: two occurrences with separator yields two occurences of the character separated by the the separator'
 
-test_string_value \
+testing::test_string_value \
   'xyxyx' \
-  "$(repeat 3 'x' 'y')" \
-  'repeat: three occurrences with separator yields three occurences of the character separated by the the separator'
+  "$(string::repeat 3 'x' 'y')" \
+  'string::repeat: three occurrences with separator yields three occurences of the character separated by the the separator'
 
-test_string_value \
+testing::test_string_value \
   'xxyyxxyyxx' \
-  "$(repeat 3 'xx' 'yy')" \
-  'repeat: three occurrences of a string with separator yields three occurences of the string separated by the the separator'
+  "$(string::repeat 3 'xx' 'yy')" \
+  'string::repeat: three occurrences of a string with separator yields three occurences of the string separated by the the separator'
 
-test_string_value \
+testing::test_string_value \
   'xxxxxx' \
-  "$(repeat 3 'xx')" \
-  'repeat: three occurrences of a string without separator yields three occurences of the string only'
+  "$(string::repeat 3 'xx')" \
+  'string::repeat: three occurrences of a string without separator yields three occurences of the string only'
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
-  test_summary
+  testing::test_summary
 
   if ((TestCountFail != 0)); then
-    list_failed_tests
+    testing::list_failed_tests
   fi
 fi

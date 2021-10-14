@@ -12,5 +12,5 @@ fi
 source "${BashLib}/string/repeat.sh"
 source "${BashLib}/runner.sh"
 
-runner repeat 2 'Bash'
-runner repeat 2 'Bash' 'Separator'
+runner string::repeat 2 'Bash'
+runner string::repeat 2 'Bash' 'Separator'

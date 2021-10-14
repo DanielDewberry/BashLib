@@ -14,123 +14,123 @@ source "${BashLib}/string/case.sh"
 
 # Section
 
-test_string_value \
+testing::test_string_value \
   'A' \
-  "$(ucase 'a')" \
-  'ucase: single lowercase character convert to corresponding uppercase character'
+  "$(string::ucase 'a')" \
+  'string::ucase: single lowercase character convert to corresponding uppercase character'
 
-test_string_value \
+testing::test_string_value \
   'AB' \
-  "$(ucase 'ab')" \
-  'ucase: two lowercase characters convert to corresponding uppercase characters'
+  "$(string::ucase 'ab')" \
+  'string::ucase: two lowercase characters convert to corresponding uppercase characters'
 
-test_string_value \
+testing::test_string_value \
   'A' \
-  "$(ucase 'A')" \
-  'ucase: single uppercase character remains uppercase'
+  "$(string::ucase 'A')" \
+  'string::ucase: single uppercase character remains uppercase'
 
-test_string_value \
+testing::test_string_value \
   'AB' \
-  "$(ucase 'AB')" \
-  'ucase: two uppercase characters remain uppercase'
+  "$(string::ucase 'AB')" \
+  'string::ucase: two uppercase characters remain uppercase'
 
-ucase 'AB' >/dev/null
+string::ucase 'AB' >/dev/null
 rv=$?
-test_numeric_value \
+testing::test_numeric_value \
   0 \
   $rv \
-  'ucase: successful operation yields return value 0'
+  'string::ucase: successful operation yields return value 0'
 
-ucase >/dev/null
+string::ucase >/dev/null
 rv=$?
-test_numeric_value \
+testing::test_numeric_value \
   1 \
   $rv \
-  'ucase: too few parameters yields return value 1'
+  'string::ucase: too few parameters yields return value 1'
 
-ucase 'a' 'b' >/dev/null
+string::ucase 'a' 'b' >/dev/null
 rv=$?
-test_numeric_value \
+testing::test_numeric_value \
   1 \
   $rv \
-  'ucase: too many parameters yields return value 1'
+  'string::ucase: too many parameters yields return value 1'
 
-test_string_value \
+testing::test_string_value \
   'BASH UPPERCASE' \
-  "$(ucase 'Bash Uppercase')" \
-  'ucase: mixture of uppercase and lowercase characters are converted to uppercase'
+  "$(string::ucase 'Bash Uppercase')" \
+  'string::ucase: mixture of uppercase and lowercase characters are converted to uppercase'
 
-test_string_value \
+testing::test_string_value \
   ' !"#$%&'"'"'()*+,-./0123456789:;<=>?@[\]^_`{|}~' \
-  "$(ucase ' !"#$%&'"'"'()*+,-./0123456789:;<=>?@[\]^_`{|}~')" \
-  'ucase: numbers and symbols remain unaffected'
+  "$(string::ucase ' !"#$%&'"'"'()*+,-./0123456789:;<=>?@[\]^_`{|}~')" \
+  'string::ucase: numbers and symbols remain unaffected'
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
-  test_summary
+  testing::test_summary
 
   if ((TestCountFail != 0)); then
-    list_failed_tests
+    testing::list_failed_tests
   fi
 fi
 
 # Section
 
-test_string_value \
+testing::test_string_value \
   'a' \
-  "$(lcase 'A')" \
-  'lcase: single uppercase character convert to corresponding lowercase character'
+  "$(string::lcase 'A')" \
+  'string::lcase: single uppercase character convert to corresponding lowercase character'
 
-test_string_value \
+testing::test_string_value \
   'ab' \
-  "$(lcase 'AB')" \
-  'lcase: two uppercase characters convert to corresponding lowercase characters'
+  "$(string::lcase 'AB')" \
+  'string::lcase: two uppercase characters convert to corresponding lowercase characters'
 
-test_string_value \
+testing::test_string_value \
   'a' \
-  "$(lcase 'a')" \
-  'lcase: single lowercase character remains lowercase'
+  "$(string::lcase 'a')" \
+  'string::lcase: single lowercase character remains lowercase'
 
-test_string_value \
+testing::test_string_value \
   'ab' \
-  "$(lcase 'ab')" \
-  'lcase: two lowercase characters remain lowercase'
+  "$(string::lcase 'ab')" \
+  'string::lcase: two lowercase characters remain lowercase'
 
-lcase 'AB' >/dev/null
+string::lcase 'AB' >/dev/null
 rv=$?
-test_numeric_value \
+testing::test_numeric_value \
   0 \
   $rv \
-  'lcase: successful operation yields return value 0'
+  'string::lcase: successful operation yields return value 0'
 
-lcase >/dev/null
+string::lcase >/dev/null
 rv=$?
-test_numeric_value \
+testing::test_numeric_value \
   1 \
   $rv \
-  'lcase: too few parameters yields return value 1'
+  'string::lcase: too few parameters yields return value 1'
 
-lcase 'a' 'b' >/dev/null
+string::lcase 'a' 'b' >/dev/null
 rv=$?
-test_numeric_value \
+testing::test_numeric_value \
   1 \
   $rv \
-  'lcase: too many parameters yields return value 1'
+  'string::lcase: too many parameters yields return value 1'
 
-test_string_value \
+testing::test_string_value \
   'bash uppercase' \
-  "$(lcase 'Bash Uppercase')" \
-  'lcase: mixture of lowercase and uppercase characters are converted to lowercase'
+  "$(string::lcase 'Bash Uppercase')" \
+  'string::lcase: mixture of lowercase and uppercase characters are converted to lowercase'
 
-test_string_value \
+testing::test_string_value \
   ' !"#$%&'"'"'()*+,-./0123456789:;<=>?@[\]^_`{|}~' \
-  "$(lcase ' !"#$%&'"'"'()*+,-./0123456789:;<=>?@[\]^_`{|}~')" \
-  'lcase: numbers and symbols remain unaffected'
+  "$(string::lcase ' !"#$%&'"'"'()*+,-./0123456789:;<=>?@[\]^_`{|}~')" \
+  'string::lcase: numbers and symbols remain unaffected'
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
-  test_summary
+  testing::test_summary
 
   if ((TestCountFail != 0)); then
-    list_failed_tests
+    testing::list_failed_tests
   fi
 fi
 

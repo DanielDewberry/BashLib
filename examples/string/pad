@@ -12,7 +12,7 @@ fi
 source "${BashLib}/string/pad.sh"
 source "${BashLib}/runner.sh"
 
-runner string_pad_left 10 - padleft
-runner string_pad_right 10 - padright
-runner string_pad_outer 10 - padouter
-runner string_pad_inner 10 - pad inner
+runner string::pad_left 10 - padleft
+runner string::pad_right 10 - padright
+runner string::pad_outer 10 - padouter
+runner string::pad_inner 10 - pad inner

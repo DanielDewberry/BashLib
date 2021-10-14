@@ -8,16 +8,16 @@
 # Defines useful padding functions
 #
 # Functions:
-#   - string_pad_left     Left pad a string
-#   - string_pad_right    Right pad a string
-#   - string_pad_outer    Pad a string, surrounding it with the specified
-#   - string_pad_inner
+#   - string::pad_left     Left pad a string
+#   - string::pad_right    Right pad a string
+#   - string::pad_outer    Pad a string, surrounding it with the specified
+#   - string::pad_inner
 #
 ###############################################################################
 
 # Functions
 
-string_pad_left() {
+string::pad_left() {
   # Left pad a string
   #
   # Arguments
@@ -30,7 +30,7 @@ string_pad_left() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   string_pad_left \
+  #   string::pad_left \
   #      10           \
   #      '-'          \
   #      'Bash'
@@ -59,7 +59,7 @@ string_pad_left() {
   return 0
 }
 
-string_pad_right() {
+string::pad_right() {
   # Right pad a string
   #
   # Arguments
@@ -72,7 +72,7 @@ string_pad_right() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   string_pad_right \
+  #   string::pad_right \
   #      10            \
   #      '-'           \
   #      'Bash'
@@ -101,7 +101,7 @@ string_pad_right() {
   return 0
 }
 
-string_pad_outer() {
+string::pad_outer() {
   # Outer pad a string
   #
   # Arguments
@@ -114,7 +114,7 @@ string_pad_outer() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   string_pad_outer \
+  #   string::pad_outer \
   #      10            \
   #      '-'           \
   #      'Bash'
@@ -145,7 +145,7 @@ string_pad_outer() {
   return 0
 }
 
-string_pad_inner() {
+string::pad_inner() {
   # Inner pad a string
   #
   # Arguments
@@ -159,7 +159,7 @@ string_pad_inner() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   string_pad_inner \
+  #   string::pad_inner \
   #      10            \
   #      '-'           \
   #      'Bash'        \

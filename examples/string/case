@@ -12,10 +12,10 @@ fi
 source "${BashLib}/string/case.sh"
 source "${BashLib}/runner.sh"
 
-runner ucase 'bash'
-runner ucase 'Bash'
-runner ucase 'BASH'
+runner string::ucase 'bash'
+runner string::ucase 'Bash'
+runner string::ucase 'BASH'
 
-runner lcase 'bash'
-runner lcase 'Bash'
-runner lcase 'BASH'
+runner string::lcase 'bash'
+runner string::lcase 'Bash'
+runner string::lcase 'BASH'

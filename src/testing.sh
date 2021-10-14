@@ -14,13 +14,14 @@
 #   - TestFails
 #
 # Functions:
-#   - unit_test_result     Invoked by a function such as test_string_length to
-#                            print and format the result
-#   - test_numeric_value   Compare and report the value of two numbers
-#   - test_string_value    Compare and report the value of two strings
-#   - test_string_length   Test and resport the length of a string
-#   - test_summary         Print test results
-#   - main                 Tests and example usage for this module
+#   - testing::unit_test_result     Invoked by a function such as
+#                                   testing::test_string_length to print and
+#                                   format the result
+#   - testing::test_numeric_value   Compare and report the value of two numbers
+#   - testing::test_string_value    Compare and report the value of two strings
+#   - testing::test_string_length   Test and resport the length of a string
+#   - testing::test_summary         Print test results
+#   - testing::main                 Tests and example usage for this module
 #
 ###############################################################################
 
@@ -33,8 +34,8 @@ declare -a TestFails
 
 # Functions
 
-unit_test_result() {
-  # Invoked by a function such as test_string_length to print
+testing::unit_test_result() {
+  # Invoked by a function such as testing::test_string_length to print
   # and format the result
   #
   # Arguments
@@ -44,7 +45,7 @@ unit_test_result() {
   #   - test context  Additional text to display, if the test yields a failure
   #
   # Example
-  #    unit_test_result                            \
+  #    testing::unit_test_result                   \
   #       'FAIL'                                   \
   #       'string length'                          \
   #       "Phone number should have 11 characters" \
@@ -84,7 +85,7 @@ unit_test_result() {
   return 0
 }
 
-test_string_value() {
+testing::test_string_value() {
   # Compare and report the value of two strings
   #
   # Arguments:
@@ -93,7 +94,7 @@ test_string_value() {
   #  - test name
   #
   # Example
-  #     test_string_value    \
+  #     testing::test_string_value    \
   #       "$expected_string" \
   #       "$actual_string"   \
   #       "test name"
@@ -103,11 +104,11 @@ test_string_value() {
   local test_name="$3"
 
   if [ "$value_expected" == "$value_actual" ]; then
-    unit_test_result 'PASS' \
+    testing::unit_test_result 'PASS' \
       'string value' \
       "$test_name"
   else
-    unit_test_result 'FAIL' \
+    testing::unit_test_result 'FAIL' \
       'string value' \
       "$test_name" \
       "Expected value: $value_expected, actual value: $value_actual"
@@ -116,7 +117,7 @@ test_string_value() {
   return 0
 }
 
-test_numeric_value() {
+testing::test_numeric_value() {
   # Compare and report the value of two numbers
   #
   # Arguments:
@@ -125,7 +126,7 @@ test_numeric_value() {
   #  - test name
   #
   # Example
-  #     test_numeric_value    \
+  #     testing::test_numeric_value    \
   #         "$expected_value" \
   #         "$actual_value"   \
   #         'test name'
@@ -135,11 +136,11 @@ test_numeric_value() {
   local test_name="$3"
 
   if ((value_expected == value_actual)); then
-    unit_test_result 'PASS' \
+    testing::unit_test_result 'PASS' \
       'numeric value' \
       "$test_name"
   else
-    unit_test_result 'FAIL' \
+    testing::unit_test_result 'FAIL' \
       'numeric value' \
       "$test_name" \
       "Expected value: $value_expected, actual value: $value_actual"
@@ -148,7 +149,7 @@ test_numeric_value() {
   return 0
 }
 
-test_string_length() {
+testing::test_string_length() {
   # Test and resport the length of a string
   #
   # Arguments:
@@ -157,7 +158,7 @@ test_string_length() {
   #  - test name
   #
   # Example
-  #     test_string_length     \
+  #     testing::test_string_length     \
   #         "$expected_length" \
   #         "$actual_string"   \
   #         'test name'
@@ -168,11 +169,11 @@ test_string_length() {
   local strlen_actual="${#str}"
 
   if ((strlen_expected == strlen_actual)); then
-    unit_test_result 'PASS' \
+    testing::unit_test_result 'PASS' \
       'string length' \
       "$test_name"
   else
-    unit_test_result 'FAIL' \
+    testing::unit_test_result 'FAIL' \
       'string length' \
       "$test_name" \
       "Expected length: $strlen_expected, actual length: $strlen_actual"
@@ -181,20 +182,20 @@ test_string_length() {
   return 0
 }
 
-test_summary() {
+testing::test_summary() {
   # Print test results
   #
   # Arguments: None
   #
   # Example
-  #     test_summary
+  #     testing::test_summary
 
   printf 'Passes  %s\n' "$TestCountPass"
   printf 'Fails   %s\n' "$TestCountFail"
   printf 'Total   %s %s%% Success\n' "$TestCount" "$((100 * TestCountPass / TestCount))"
 }
 
-list_failed_tests() {
+testing::list_failed_tests() {
   if ((TestCountFail != 0)); then
     printf 'Failures:\n'
     for failure in "${TestFails[@]}"; do
@@ -203,25 +204,25 @@ list_failed_tests() {
   fi
 }
 
-main() {
+testing::main() {
   # Tests and example usage for this module
   #
   # Arguments: None
   #
   # Example
-  #     main
+  #     testing::main
 
-  test_string_length 16 'test should pass' 'this test should pass (P)'
-  test_string_length 17 'test should fail' 'this test should fail (F)'
-  test_numeric_value 24 24 "Value shoud be 24 (P)"
-  test_numeric_value 24 25 "Value shoud be 24 (F)"
-  test_string_value "Bash" "Bash" "Function should yield \"bash\" (P)"
-  test_string_value "Bash" "bash" "Function should yield \"bash\" (F)"
+  testing::test_string_length 16 'test should pass' 'this test should pass (P)'
+  testing::test_string_length 17 'test should fail' 'this test should fail (F)'
+  testing::test_numeric_value 24 24 "Value shoud be 24 (P)"
+  testing::test_numeric_value 24 25 "Value shoud be 24 (F)"
+  testing::test_string_value "Bash" "Bash" "Function should yield \"bash\" (P)"
+  testing::test_string_value "Bash" "bash" "Function should yield \"bash\" (F)"
 
   return 0
 }
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
-  main
-  test_summary
+  testing::main
+  testing::test_summary
 fi

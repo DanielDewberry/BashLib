@@ -8,14 +8,14 @@
 # Defines useful padding functions
 #
 # Functions:
-#   - ucase
-#   - lcase
+#   - string::ucase
+#   - string::lcase
 #
 ###############################################################################
 
 # Functions
 
-ucase() {
+string::ucase() {
   # Convert a string to uppercase
   #
   # Arguments
@@ -26,7 +26,7 @@ ucase() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   ucase 'bash'
+  #   string::ucase 'bash'
   #   Output:
   #       'BASH'
 
@@ -42,7 +42,7 @@ ucase() {
   return 0
 }
 
-lcase() {
+string::lcase() {
   # Convert a string to uppercase
   #
   # Arguments
@@ -53,7 +53,7 @@ lcase() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   ucase 'bash'
+  #   string::ucase 'bash'
   #   Output:
   #       'BASH'
 

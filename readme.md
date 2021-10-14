@@ -42,12 +42,12 @@ export BashLib="$PWD"
 
 ## Usage
 
-If you wish to use the ucase function which is defined in string/case, do this:
+If you wish to use the string::ucase function which is defined in string/case, do this:
 
 ```
 source "${BashLib}/case"
 
-ucase 'Some text'
+string::ucase 'Some text'
 ```
 
 ## Library contents
@@ -60,15 +60,15 @@ ucase 'Some text'
    - echo\_err
 - string
   - case
-    - lcase
-    - ucase
+    - string::lcase
+    - string::ucase
   - repeat
-    - repeat
+    - string::repeat
   - pad
-    - string\_pad\_left
-    - string\_pad\_right
-    - string\_pad\_inner
-    - string\_pad\_outer
+    - string::pad\_left
+    - string::pad\_right
+    - string::pad\_inner
+    - string::pad\_outer
 
 
 ## Contributions
