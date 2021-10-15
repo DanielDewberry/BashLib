@@ -12,7 +12,8 @@ Files in `examples/`, `src/` and `tests/` rely on files in `src/` only.  No othe
 │   └── string
 │       ├── case
 │       ├── pad
-│       └── repeat
+│       ├── repeat
+│       └── trim
 ├── src
 │   ├── logging
 │   ├── runner
