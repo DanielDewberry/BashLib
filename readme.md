@@ -17,9 +17,6 @@ Files in `examples/`, `src/` and `tests/` rely on files in `src/` only.  No othe
 │   ├── logging
 │   ├── runner
 │   ├── string
-│   │   ├── case
-│   │   ├── pad
-│   │   └── repeat
 │   └── testing
 └── tests
     ├── logging
@@ -45,7 +42,7 @@ export BashLib="$PWD"
 If you wish to use the string::ucase function which is defined in string/case, do this:
 
 ```
-source "${BashLib}/case"
+source "${BashLib}/string"
 
 string::ucase 'Some text'
 ```
@@ -59,16 +56,13 @@ string::ucase 'Some text'
    - echo\_warn
    - echo\_err
 - string
-  - case
-    - string::lcase
-    - string::ucase
-  - repeat
-    - string::repeat
-  - pad
-    - string::pad\_left
-    - string::pad\_right
-    - string::pad\_inner
-    - string::pad\_outer
+  - string::lcase
+  - string::ucase
+  - string::pad\_left
+  - string::pad\_right
+  - string::pad\_inner
+  - string::pad\_outer
+  - string::repeat
 
 
 ## Contributions
