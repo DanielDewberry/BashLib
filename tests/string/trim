@@ -14,6 +14,8 @@ source "${BashLib}/string.sh"
 
 # Section
 
+## ltrim
+
 testing::test_string_value \
   '' \
   "$(string::ltrim '')" \
@@ -62,13 +64,55 @@ testing::test_numeric_value \
   'string::ltrim: non-empty string with leading space yields return value 0'
 
 
-if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
-  testing::test_summary
+## rtrim
 
-  if ((TestCountFail != 0)); then
-    testing::list_failed_tests
-  fi
-fi
+testing::test_string_value \
+  '' \
+  "$(string::rtrim '')" \
+  'string::rtrim: empty string yields empty string'
+
+string::rtrim '' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::rtrim: empty string yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::rtrim 'x')" \
+  'string::rtrim: non-empty string without leading space yields same string'
+
+string::rtrim 'x' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::rtrim: non-empty string without leading space yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::rtrim 'x  ')" \
+  'string::rtrim: non-empty string with trailing space yields the string without trailing space'
+string::rtrim 'x  ' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::rtrim: non-empty string with trailing space yields return value 0'
+
+testing::test_string_value \
+  '  x' \
+  "$(string::rtrim '  x')" \
+  'string::rtrim: non-empty string with leading space yields the same string'
+
+string::rtrim '  x' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::rtrim: non-empty string with leading space yields return value 0'
+
 
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
   testing::test_summary

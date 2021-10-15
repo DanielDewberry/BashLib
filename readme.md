@@ -65,6 +65,7 @@ string::ucase 'Some text'
   - string::pad\_outer
   - string::repeat
   - string::ltrim
+  - string::rtrim
 
 
 ## Contributions

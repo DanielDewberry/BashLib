@@ -294,3 +294,19 @@ string::ltrim() {
   printf '%s' "${var}"
   return
 }
+
+string::rtrim() {
+  # Trim trailing space
+  #
+  # Arguments:
+  #   - string
+  #
+  # Example:
+  #   string::rtrim 'trailing space    '
+
+  local var
+  var="$1"
+  var="${var%"${var##*[![:space:]]}"}"
+  printf '%s' "${var}"
+  return
+}
