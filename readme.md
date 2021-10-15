@@ -66,6 +66,7 @@ string::ucase 'Some text'
   - string::repeat
   - string::ltrim
   - string::rtrim
+  - string::trim
 
 
 ## Contributions

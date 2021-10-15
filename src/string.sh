@@ -310,3 +310,20 @@ string::rtrim() {
   printf '%s' "${var}"
   return
 }
+
+string::trim() {
+  # Trim trailing and leading space
+  #
+  # Arguments:
+  #   - string
+  #
+  # Example:
+  #   string::trim '  x   '
+
+  local var
+  var="$1"
+  ltrimmed_string="$(string::ltrim "${var}")"
+  trimmed_string="$(string::rtrim "${ltrimmed_string}")"
+  printf '%s' "${trimmed_string}"
+  return
+}

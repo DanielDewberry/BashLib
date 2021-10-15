@@ -114,6 +114,68 @@ testing::test_numeric_value \
   'string::rtrim: non-empty string with leading space yields return value 0'
 
 
+## trim
+
+testing::test_string_value \
+  '' \
+  "$(string::trim '')" \
+  'string::trim: empty string yields empty string'
+
+string::trim '' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::trim: empty string yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::trim 'x')" \
+  'string::trim: non-empty string without leading space yields same string'
+
+string::trim 'x' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::trim: non-empty string without leading space yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::trim 'x  ')" \
+  'string::trim: non-empty string with trailing space yields the string without trailing space'
+string::trim 'x  ' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::trim: non-empty string with trailing space yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::trim '  x')" \
+  'string::trim: non-empty string with leading space yields the string without the leading space'
+
+string::trim '  x' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::trim: non-empty string with leading space yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::trim '  x  ')" \
+  'string::trim: non-empty string with leading and trailing space yields the string without the leading and trailing space'
+
+string::trim '  x  ' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::trim: non-empty string with leading and trailing space yields return value 0'
+
+
 if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
   testing::test_summary
 
