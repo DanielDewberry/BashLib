@@ -8,8 +8,8 @@
 # Defines useful string functions
 #
 # Functions:
-#   - string::ucase        Convert a string to upper case
-#   - string::lcase        Convert a string to lower case
+#   - string::to_upper     Convert a string to upper case
+#   - string::to_lower     Convert a string to lower case
 #   - string::pad_left     Left pad a string
 #   - string::pad_right    Right pad a string
 #   - string::pad_outer    Pad a string, surrounding it with the specified
@@ -22,7 +22,7 @@
 
 # Functions
 
-string::ucase() {
+string::to_upper() {
   # Convert a string to uppercase
   #
   # Arguments
@@ -33,7 +33,7 @@ string::ucase() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   string::ucase 'bash'
+  #   string::to_upper 'bash'
   #   Output:
   #       'BASH'
 
@@ -49,7 +49,7 @@ string::ucase() {
   return 0
 }
 
-string::lcase() {
+string::to_lower() {
   # Convert a string to uppercase
   #
   # Arguments
@@ -60,7 +60,7 @@ string::lcase() {
   #   - 1   Incorrect number of arguments
   #
   # Example
-  #   string::ucase 'bash'
+  #   string::to_upper 'bash'
   #   Output:
   #       'BASH'
 

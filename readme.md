@@ -41,12 +41,12 @@ export BashLib="$PWD"
 
 ## Usage
 
-If you wish to use the string::ucase function which is defined in string/case, do this:
+If you wish to use the string::to_upper function which is defined in string/case, do this:
 
 ```
 source "${BashLib}/string"
 
-string::ucase 'Some text'
+string::to_upper 'Some text'
 ```
 
 ## Library contents
@@ -58,8 +58,8 @@ string::ucase 'Some text'
    - echo\_warn
    - echo\_err
 - string
-  - string::lcase
-  - string::ucase
+  - string::to_lower
+  - string::to_upper
   - string::pad\_left
   - string::pad\_right
   - string::pad\_inner
