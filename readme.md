@@ -23,7 +23,8 @@ Files in `examples/`, `src/` and `tests/` rely on files in `src/` only.  No othe
     └── string
         ├── case
         ├── pad
-        └── repeat
+        ├── repeat
+        └── trim
 ```
 
 
@@ -63,6 +64,7 @@ string::ucase 'Some text'
   - string::pad\_inner
   - string::pad\_outer
   - string::repeat
+  - string::ltrim
 
 
 ## Contributions

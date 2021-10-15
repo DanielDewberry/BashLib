@@ -1,0 +1,19 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+# shellcheck source=/dev/null
+# shellcheck disable=SC2154
+if [[ -z "${BashLib}" ]]; then
+  printf 'BashLib environment variable is not set\n' >&2
+  exit 1
+fi
+# shellcheck source=/dev/null
+# shellcheck disable=SC2154
+source "${BashLib}/string.sh"
+source "${BashLib}/runner.sh"
+
+runner string::ltrim ''
+runner string::ltrim 'Bash'
+runner string::ltrim 'Bash  '
+runner string::ltrim '  Bash'
+runner string::ltrim '  Bash  '

@@ -1,0 +1,82 @@
+#! /bin/bash
+# -*- coding: utf-8 -*-
+
+# shellcheck source=/dev/null
+# shellcheck disable=SC2154
+if [[ -z "${BashLib}" ]]; then
+  printf 'BashLib environment variable is not set\n' >&2
+  exit 1
+fi
+# shellcheck source=/dev/null
+# shellcheck disable=SC2154
+source "${BashLib}/testing.sh"
+source "${BashLib}/string.sh"
+
+# Section
+
+testing::test_string_value \
+  '' \
+  "$(string::ltrim '')" \
+  'string::ltrim: empty string yields empty string'
+
+string::ltrim '' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::ltrim: empty string yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::ltrim 'x')" \
+  'string::ltrim: non-empty string without leading space yields same string'
+
+string::ltrim 'x' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::ltrim: non-empty string without leading space yields return value 0'
+
+testing::test_string_value \
+  'x  ' \
+  "$(string::ltrim 'x  ')" \
+  'string::ltrim: non-empty string with trailing space yields same string' 
+string::ltrim 'x  ' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::ltrim: non-empty string with trailing space yields return value 0'
+
+testing::test_string_value \
+  'x' \
+  "$(string::ltrim '  x')" \
+  'string::ltrim: non-empty string with leading space yields the string without leading space'
+
+string::ltrim '  x' >/dev/null
+rv=$?
+testing::test_numeric_value \
+  0 \
+  $rv \
+  'string::ltrim: non-empty string with leading space yields return value 0'
+
+
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
+  testing::test_summary
+
+  if ((TestCountFail != 0)); then
+    testing::list_failed_tests
+  fi
+fi
+
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then
+  testing::test_summary
+
+  if ((TestCountFail != 0)); then
+    testing::list_failed_tests
+  fi
+fi
+
+# Todo:
+# Test input strings work
